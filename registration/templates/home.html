@@ -4,24 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Delight</title>
+    <!-- Global styles for the entire page -->
     <style>
+        /* Styling for the body */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f64d4d;
+            background-color: #f64d4d; /* Background animation base color */
             animation: backgroundAnimation 20s linear infinite alternate;
         }
+/* Background color blinking animation */
+@keyframes backgroundAnimation {
+    0% {
+        background-color: #52e4fb; /* First background color */
+    }
+    50% {
+        background-color: #ff00f2; /* Second background color */
+    }
+    100% {
+        background-color: #52e4fb; /* Back to the first background color */
+    }
+}
 
-        @keyframes backgroundAnimation {
-            0% {
-                background-color: #52e4fb,#ccca5c,#711aa3;
-            }
-            100% {
-                background-color: #ff00f2; /* Change to your desired background color */
-            }
-        }
-
+        /* Header styling */
         header {
             background-color: #333;
             color: #fff;
@@ -29,9 +35,24 @@
             padding: 20px 0;
         }
 
-        h1 {
-            margin: 0;
+        /* Animation for sliding in the header content */
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
+
+        /* Animation applied to the header's h1 element */
+        header h1 {
+            animation: slideIn 1s ease-in-out;
+        }
+   
+        /* Navigation bar styling */
         nav ul {
             list-style-type: none;
             margin: 0;
@@ -53,13 +74,14 @@
             transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
         }
     
+        /* Hover effect for navigation links */
         nav a:hover {
             background-color: #444;
-            color: #893e7a; /* Change the text color on hover */
+            color: #e64016e8; /* Change the text color on hover */
             box-shadow: 0 0 20px rgba(255, 102, 0, 0.7); /* Add glowing effect */
         }
-    
 
+        /* Container for the main content */
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -68,23 +90,26 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             text-align: center;
-            margin-top: 250px;
+            margin-top: 100px;
         }
 
+        /* Footer styling */
         footer {
             text-align: center;
             padding: 10px 0;
             background-color: #333;
             color: #fff;
-            margin-top: 400px;
+            margin-top: 100px;
         }
     </style>
 </head>
 <body>
+    <!-- Header section -->
     <header>
         <h1>Food Delight</h1>
     </header>
 
+    <!-- Navigation bar -->
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
@@ -92,15 +117,23 @@
             <li><a href="#">About Us</a></li>
             <li><a href="#">Contact</a></li>
             <li class="nav-item">
-                <a class="nav-link glow-button" href="{% url 'logout' %}">Logout</a>
+                <a href="#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Logout</a>
             </li>
         </ul>
     </nav>
 
+    <!-- Main content container -->
     <div class="container">
         <h2>Welcome to Food Delight</h2>
         <p>Discover a world of delicious cuisine right at your doorstep. From mouthwatering pizzas to exotic desserts, we have it all!</p>
     </div>
+
+    <!-- Footer section -->
 
     <footer>
         &copy; 2023 Food Delight. All rights reserved.
