@@ -25,6 +25,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-cxt@or+j(5$76aa-*c##255#1pz3q&g386c@2*)t@vw9$9af-m'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Application definition
@@ -54,7 +59,7 @@ ROOT_URLCONF = 'registration.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates','media'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,7 +81,7 @@ WSGI_APPLICATION = 'registration.wsgi.application'
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'DB3', #database Namae  
+        'NAME': 'login_system', #database Namae  
         'USER':'root',  
         'PASSWORD':'Saurabh@1998',  
         'HOST':'localhost',  
@@ -122,5 +127,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cxt@or+j(5$76aa-*c##255#1pz3q&g386c@2*)t@vw9$9af-m'

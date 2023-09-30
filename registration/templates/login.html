@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <!----------------- Page Title and Meta Tags ------------------>
-
+  <!-- Design by foolishdeveloper.com -->
     <title>Login Page</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
-    <!------------------------------ External CSS Libraries and Fonts ------------------------>
-
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap">
-
-
-    <!------------------------------------ Internal Stylesheet ------------------------------------->
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
     <style media="screen">
         /* Reset and Global Styles */
         *:before,
@@ -224,51 +215,28 @@
 
         
     </style>
-
 </head>
 <body>
-    
-    
-    <!------------------------------------ Background Circles ------------------------------------>
-
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-
-
-
-    <!------------------------------------ Login Form ------------------------------------>
-
     <form method="post">
         <h3>Login Here</h3>
         {% csrf_token %} 
-
-
-        <!------------------------------------ Username Field ------------------------------------>
-
         <label for="username">Username</label>
         <input type="text" placeholder="Enter Username" id="username" name="username">
-
-
-
-        <!----------------------------------------- Password Field ----------------------------------->
 
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="pass">
 
-
-
-        <!------------------------------------- Login Button ---------------------------------------->
-
         <button type="submit">Log In</button>
-
-        
-        <!------------------------------------- Signup Link -------------------------------------------------->
-        
-        <a href="{% url 'signup' %}" >Create an account</a>
+        <!-- <input type="button" value=""> -->
+        <!-- <div class="social">
+          <div class="go"><i class="fab fa-google"></i>  Google</div>
+          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        </div> -->
+        <a href="{% url 'signup' %}" >Create a account</a>
     </form>
 </body>
 </html>
-
-

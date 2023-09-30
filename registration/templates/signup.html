@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Design by foolishdeveloper.com -->
+  <!-- Design by foolishdeveloper.com -->
     <title>Signup Page</title>
-
-    <!-- Links to external resources -->
+ 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-
-    <!-- Stylesheet for this page -->
+    <!--Stylesheet-->
     <style media="screen">
         /* Reset and Global Styles */
         *:before,
@@ -187,27 +185,21 @@
         {% csrf_token %} 
         <h3>Signup Here</h3>
 
-        <!-- Label and input for Username -->
         <label for="username">Username</label>
         <input type="text" placeholder="Username" name="username" id="username">
 
-        <!-- Label and input for Email -->
         <label for="email">Email</label>
         <input type="email" placeholder="Email or Phone" name="email" id="email">
 
-        <!-- Label and input for Password -->
         <label for="password1">Password</label>
         <input type="password" placeholder="Password" id="password1" name="password1">
 
-        <!-- Label and input for Confirm Password -->
+
         <label for="password2">Confrom Password</label>
         <input type="password" placeholder="Confrom Password" id="password2" name="password2">
-
-        <!-- Signup button -->
         <button type="submit">Signup</button>
         
-        <!-- Link to the login page -->
-        <a href="{% url 'login' %}" >I already have an account</a>
+        <a href="{% url 'login' %}" >i have already account</a>
     </form>
 </body>
 </html>
