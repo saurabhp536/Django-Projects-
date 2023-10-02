@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Add your CSS styles if needed -->
+</head>
+<body>
+    <h1>User Profile</h1>
+
+    <div>
+        <h2>{{ user.username }}</h2>
+        <!-- Display the user's profile picture if available -->
+        {% if user.userprofile.profile_picture %}
+            <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" width="150">
+        {% endif %}
+
+        <!-- Display the user's bio if available -->
+        {% if user.userprofile.bio %}
+            <p>Bio: {{ user.userprofile.bio }}</p>
+        {% endif %}
+
+        <!-- Display the user's mobile number if available -->
+        {% if user.userprofile.mobile_number %}
+            <p>Mobile Number: {{ user.userprofile.mobile_number }}</p>
+        {% endif %}
+
+        <!-- Display the user's address if available -->
+        {% if user.userprofile.address %}
+            <p>Address: {{ user.userprofile.address }}</p>
+        {% endif %}
+
+        <!-- Display the user's date of birth if available -->
+        {% if user.userprofile.date_of_birth %}
+            <p>Date of Birth: {{ user.userprofile.date_of_birth }}</p>
+        {% endif %}
+
+        <!-- Add any additional user profile information here -->
+
+        <!-- Example: Display the user's email address -->
+        <p>Email: {{ user.email }}</p>
+
+        {% if user == request.user %}
+        <!-- Display "Edit Profile" link/button for the currently logged-in user -->
+        <a href="{% url 'edit_profile' %}">Edit Profile</a>
+        {% endif %}
+
+        
+
+    </div>
+
+    
+</html>
