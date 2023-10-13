@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* Add your CSS styles for the transparent box and animated background */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            animation: changeColor 5s infinite linear;
+        }
+
+        @keyframes changeColor {
+            0% {
+                background: linear-gradient(45deg, #ff5733, #fddb92, #dc281e, #ff7f00);
+            }
+            25% {
+                background: linear-gradient(45deg, #ff7f00, #ff5733, #fddb92, #dc281e);
+            }
+            50% {
+                background: linear-gradient(45deg, #dc281e, #ff7f00, #ff5733, #fddb92);
+            }
+            75% {
+                background: linear-gradient(45deg, #fddb92, #dc281e, #ff7f00, #ff5733);
+            }
+            100% {
+                background: linear-gradient(45deg, #ff5733, #fddb92, #dc281e, #ff7f00);
+            }
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7); /* Transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        .profile-picture {
+            max-width: 150px;
+            border-radius: 50%;
+            margin: 10px auto; /* Center the image horizontally */
+        }
+
+        p {
+            color: #333;
+        }
+
+        a {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+
+        <div>
+            <h2>{{ user.username }}</h2>
+            <!-- Display the user's profile picture if available -->
+            {% if user.userprofile.profile_picture %}
+                <img class="profile-picture" src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture">
+            {% endif %}
+
+            <!-- Display the user's bio if available -->
+            {% if user.userprofile.bio %}
+                <p>Bio: {{ user.userprofile.bio }}</p>
+            {% endif %}
+
+            <!-- Display the user's mobile number if available -->
+            {% if user.userprofile.mobile_number %}
+                <p>Mobile Number: {{ user.userprofile.mobile_number }}</p>
+            {% endif %}
+
+            <!-- Display the user's address if available -->
+            {% if user.userprofile.address %}
+                <p>Address: {{ user.userprofile.address }}</p>
+            {% endif %}
+
+            <!-- Display the user's date of birth if available -->
+            {% if user.userprofile.date_of_birth %}
+                <p>Date of Birth: {{ user.userprofile.date_of_birth }}</p>
+            {% endif %}
+
+            <!-- Add any additional user profile information here -->
+
+            <!-- Example: Display the user's email address -->
+            <p>Email: {{ user.email }}</p>
+
+            {% if user == request.user %}
+            <!-- Display "Edit Profile" link/button for the currently logged-in user -->
+            <a href="{% url 'edit_profile' %}">Edit Profile</a>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        // Particles.js configuration
+ particlesJS('particles-js', {
+    particles: {
+        number: {
+            value: 50, // Number of particles
+            density: {
+                enable: true,
+                value_area: 800
+            }
+        },
+        color: {
+            value: ['#007BFF', '#0056b3'] // Particle colors
+        },
+        shape: {
+            type: 'circle', // Particle shape
+            stroke: {
+                width: 0,
+                color: '#000'
+            },
+            polygon: {
+                nb_sides: 5
+            },
+            image: {
+                src: 'img/github.svg',
+                width: 100,
+                height: 100
+            }
+        },
+        opacity: {
+            value: 0.5, // Particle opacity
+            random: false,
+            anim: {
+                enable: false,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false
+            }
+        },
+        size: {
+            value: 5, // Particle size
+            random: true,
+            anim: {
+                enable: false,
+                speed: 40,
+                size_min: 0.1,
+                sync: false
+            }
+        },
+        line_linked: {
+            enable: true, // Connect particles with lines
+            distance: 150,
+            color: '#000',
+            opacity: 0.4,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 6,
+            direction: 'none',
+            random: false,
+            straight: false,
+            out_mode: 'out',
+            bounce: false,
+            attract: {
+                enable: false,
+                rotateX: 600,
+                rotateY: 1200
+            }
+        }
+    },
+    interactivity: {
+        detect_on: 'canvas',
+        events: {
+            onhover: {
+                enable: true,
+                mode: 'repulse'
+            },
+            onclick: {
+                enable: true,
+                mode: 'push'
+            },
+            resize: true
+        },
+        modes: {
+            grab: {
+                distance: 400,
+                line_linked: {
+                    opacity: 1
+                }
+            },
+            bubble: {
+                distance: 400,
+                size: 40,
+                duration: 2,
+                opacity: 8,
+                speed: 3
+            },
+            repulse: {
+                distance: 200,
+                duration: 0.4
+            },
+            push: {
+                particles_nb: 4
+            },
+            remove: {
+                particles_nb: 2
+            }
+        }
+    },
+    retina_detect: true
+});
+
+    </script>
+</body>
+</html>
