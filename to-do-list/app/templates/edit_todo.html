@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  /* Custom background color and gradient */
+  body {
+    background: linear-gradient(135deg, #f7c9c7, #f9cfc4, #fef6c2, #fdf9c0, #f8fbc0);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s infinite;
+  }
+
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Container Styles */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  /* Form Styles */
+  form {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* Form Header Styles */
+  h2 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  /* Input Field Styles */
+  input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  /* Submit Button Styles */
+  input[type="submit"] {
+    background-color: #4287f5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #1e4fd9;
+  }
+</style>
+
+<div class="container">
+  <div class="col-lg-4 mx-auto shadow p-0" style="background-color: #f88585a2;">
+    <div class="alert alert-info">
+      <h2>Edit TODO</h2>
+    </div>
+    <div class="p-4">
+      <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

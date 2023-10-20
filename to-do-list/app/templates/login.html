@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  /* Custom animation for the background */
+  body {
+    background-image: linear-gradient(135deg, #f335e3, #cde63c, #86e745);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s infinite;
+  }
+
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Form Styles */
+  form {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+  }
+
+  /* Form Header Styles */
+  h2 {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  /* Input Field Styles */
+  input[type="text"],
+  input[type="password"] {
+    background-color: rgba(255, 255, 255, 0.07);
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  /* Submit Button Styles */
+  input[type="submit"] {
+    background-color: #523eea;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #321c8d;
+  }
+</style>
+
+<div class="container pt-4">
+  <div class="col-lg-4 mx-auto shadow p-0 mt-4">
+    <div class="alert alert-info">
+      <h2>Login Here</h2>
+    </div>
+    <div class="p-4">
+      <form action="/login/" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Login">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

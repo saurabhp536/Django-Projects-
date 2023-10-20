@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  /* Keyframes for the background animation */
+  @keyframes backgroundAnimation {
+    0% {
+      background-color: #ff5733; /* Start color */
+    }
+    25% {
+      background-color: #33ff57; /* Mid color */
+    }
+    50% {
+      background-color: #5733ff; /* Mid color */
+    }
+    100% {
+      background-color: #ff33c2; /* End color */
+    }
+  }
+
+  /* Apply the background animation to the entire body */
+  body {
+    animation: backgroundAnimation 10s infinite;
+  }
+
+  /* Center the content vertically and horizontally */
+  .centered-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  /* Main content container */
+  .main-container {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+  }
+
+  /* Header styling */
+  .main-container h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  /* Form styling */
+  .form-group {
+    margin: 15px 0;
+  }
+
+  .form-group label {
+    font-weight: 500;
+  }
+
+  .form-group select,
+  .form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  /* Button styling */
+  .btn-primary {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .btn-primary:hover {
+    background-color: #45a049;
+  }
+
+  /* Table styling */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  .table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+</style>
+
+<div class="centered-container">
+  <div class="main-container">
+    <h2>Add New TODO</h2>
+    <form action="/add-todo/" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="title">Title</label>
+        {{ form.title }}
+      </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        {{ form.status }}
+      </div>
+      <div class="form-group">
+        <label for="priority">Priority</label>
+        {{ form.priority }}
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+</div>
+
+<div class="centered-container">
+  <div class="main-container">
+    {% if todos|length == 0 %}
+    <div class="alert alert-info">
+      <p style="font-size: 30px; color: #333;">No Todos</p>
+    </div>
+    {% else %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Priority</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in todos %}
+        <tr class="fade-in">
+          <td>{{ forloop.counter }}</td>
+          <td>{{ todo.title }}</td>
+          <td>
+            {% if todo.status == 'C' %}
+            <span class="badge badge-success">Completed</span>
+            {% else %}
+            <span class="badge badge-warning">Pending</span>
+            {% endif %}
+          </td>
+          <td>{{ todo.priority }}</td>
+          <td>
+            <a href="/delete-todo/{{ todo.id }}" title="Delete" class="btn btn-danger">Delete</a>
+            {% if todo.status == 'P' %}
+            <a href="/change-status/{{ todo.id }}/C" title="Mark Completed" class="btn btn-success">Complete</a>
+            {% else %}
+            <a href="/change-status/{{ todo.id }}/P" title="Mark Pending" class="btn btn-warning">Mark Pending</a>
+            {% endif %}
+            <a href="/edit-todo/{{ todo.id }}" title="Edit" class="btn btn-info">Edit</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
